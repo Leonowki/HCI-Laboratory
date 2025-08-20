@@ -1,6 +1,7 @@
 LABORATORY AND ASSIGNMENT FOR HCI
 
-CREDENTIALS FOR LOGIN FORM
+NETLIFY LINK:https://courageous-pasca-524930.netlify.app/index.html
 
+CREDENTIALS FOR LOGIN FORM
 username:Meuserako123
 password:password12345
