@@ -64,12 +64,12 @@ document.getElementById("loginForm").addEventListener("submit", (e) => {
     }
 });
 
-// Shadow effect sa login form
+// Shadow effect sa login form kanang mag follow sa mouse
 const card = document.getElementById("card");
 
 document.addEventListener("mousemove", (e) => {
     const { innerWidth, innerHeight } = window;
-    const x = (e.clientX / innerWidth - 0.5) * 30; // range: -15 to +15
+    const x = (e.clientX / innerWidth - 0.5) * 30; 
     const y = (e.clientY / innerHeight - 0.5) * 30;
 
     card.style.boxShadow = `

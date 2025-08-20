@@ -28,7 +28,7 @@ light.position.set(5, 5, 5);
 scene.add(light);
 scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
-// Load GLB model
+// Load GLB model monobloc chair
 const loader = new GLTFLoader();
 loader.load(
     "./monobloc_-_plastic_garden_chair.glb",
@@ -37,11 +37,11 @@ loader.load(
         model.scale.set(1, 1, 1);
         model.position.set(0, 0, 0);
 
-        // Make all materials transparent for fade-in
+        // Make all materials transparent for fade-in effect
         model.traverse((child) => {
             if (child.isMesh) {
                 child.material.transparent = true;
-                child.material.opacity = 0; // start invisible
+                child.material.opacity = 0; //  invisible
             }
         });
 

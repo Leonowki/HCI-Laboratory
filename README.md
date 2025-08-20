@@ -1,0 +1,6 @@
+LABORATORY AND ASSIGNMENT FOR HCI
+
+CREDENTIALS FOR LOGIN FORM
+
+username:Meuserako123
+password:password12345
