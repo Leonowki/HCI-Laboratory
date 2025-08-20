@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Three.js Viewer</title>
+
+    
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script src="main.js" type="module"></script>
+</head>
+<body style="margin:0; overflow:hidden; position:relative;">
+
+    <!-- canva sa three js -->
+    <canvas class="webgl"></canvas>
+
+    <!-- Logout Button -->
+    <button onclick="window.location.href='index.html'" 
+        style="
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: none;
+            background-color: #e0e0e0;
+            box-shadow: 6px 6px 12px #b0b0b0, -6px -6px 12px #ffffff;
+            font-weight: bold;
+            cursor: pointer;
+        "
+        onmouseover="this.style.boxShadow='inset 6px 6px 12px #b0b0b0, inset -6px -6px 12px #ffffff'"
+        onmouseout="this.style.boxShadow='6px 6px 12px #b0b0b0, -6px -6px 12px #ffffff'"
+    >
+        Logout
+    </button>
+
+</body>
+</html>

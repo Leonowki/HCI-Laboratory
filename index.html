@@ -2,44 +2,151 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Three.js Viewer</title>
-
-    
-    <script type="importmap">
-    {
-        "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
-            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HCI Login Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Loader wrapper */
+        .wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        gap: 8px;
         }
-    }
-    </script>
-    <script src="main.js" type="module"></script>
-</head>
-<body style="margin:0; overflow:hidden; position:relative;">
+        .circle {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background-color: #9ca3af; /* gray-400 */
+        border-radius: 50%;
+        animation: loading 1.5s cubic-bezier(.8, .5, .2, 1.4) infinite;
+        transform-origin: bottom center;
+        position: relative;
+        }
+        @keyframes loading {
+        0% {
+            transform: translateY(0px);
+            background-color: #9ca3af; /* gray-400 */
+        }
+        50% {
+            transform: translateY(30px);
+            background-color: #6b7280; /* gray-500 */
+        }
+        100% {
+            transform: translateY(0px);
+            background-color: #9ca3af; /* gray-400 */
+        }
+        }
+        .circle-1 { animation-delay: 0.1s; }
+        .circle-2 { animation-delay: 0.2s; }
+        .circle-3 { animation-delay: 0.3s; }
+        .circle-4 { animation-delay: 0.4s; }
+        .circle-5 { animation-delay: 0.5s; }
+        .circle-6 { animation-delay: 0.6s; }
+        .circle-7 { animation-delay: 0.7s; }
+        .circle-8 { animation-delay: 0.8s; }
 
-    <!-- canva sa three js -->
-    <canvas class="webgl"></canvas>
+        /* Fade transitions */
+        .fade-out {
+        opacity: 0;
+        transition: opacity 0.8s ease;
+        pointer-events: none;
+        }
+        .hidden {
+        display: none;
+        }
+        .fade-in {
+        opacity: 1;
+        transition: opacity 0.8s ease;
+        }
+    </style>
+    </head>
+    <body class="flex items-center justify-center min-h-screen bg-gray-300">
 
-    <!-- Logout Button -->
-    <button onclick="window.location.href='login.html'" 
-        style="
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            border-radius: 12px;
-            border: none;
-            background-color: #e0e0e0;
-            box-shadow: 6px 6px 12px #b0b0b0, -6px -6px 12px #ffffff;
-            font-weight: bold;
-            cursor: pointer;
-        "
-        onmouseover="this.style.boxShadow='inset 6px 6px 12px #b0b0b0, inset -6px -6px 12px #ffffff'"
-        onmouseout="this.style.boxShadow='6px 6px 12px #b0b0b0, -6px -6px 12px #ffffff'"
-    >
-        Logout
-    </button>
+    <!-- Loader -->
+    <div id="loader" class="wrapper">
+        <span class="circle circle-1"></span>
+        <span class="circle circle-2"></span>
+        <span class="circle circle-3"></span>
+        <span class="circle circle-4"></span>
+        <span class="circle circle-5"></span>
+        <span class="circle circle-6"></span>
+        <span class="circle circle-7"></span>
+        <span class="circle circle-8"></span>
+    </div>
 
-</body>
+    <!-- Login card (hidden initially) -->
+
+    <div id="card" 
+        class="opacity-0 pointer-events-none w-80 p-8 rounded-3xl bg-gray-200
+        shadow-[12px_12px_24px_#00000030,_-12px_-12px_24px_#ffffff]
+        transition-opacity duration-1000 ease-in-out
+        hover:-translate-y-2 hover:scale-101">
+        
+        <!-- Avatar -->
+        <div class="w-16 h-16 mx-auto rounded-full 
+            shadow-[8px_8px_16px_#00000020,_-8px_-8px_16px_#ffffff] 
+            flex items-center justify-center text-3xl text-gray-500
+            transition-shadow duration-300
+            hover:shadow-[inset_6px_6px_12px_#00000020,_inset_-6px_-6px_12px_#ffffff]">
+            <svg viewBox="-11 0 48 20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+            </svg>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-10">
+        <h1 class="text-2xl font-semibold text-gray-700 mt-4">Hello</h1>
+        <p class="text-gray-500 text-sm">Please log in to continue</p>
+        </div>
+
+        <!-- Form -->
+        <form id="loginForm" class="space-y-5">
+        <!-- Username -->
+        <div>
+            <label for="username" class="block text-sm text-gray-600 mb-1">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter username"
+            class="w-full p-3 rounded-xl bg-gray-200 border-none outline-none
+            shadow-[inset_6px_6px_12px_#00000020,_inset_-6px_-6px_12px_#ffffff]
+            focus:shadow-[0_0_0_2px_#86d4d9,_inset_6px_6px_12px_#00000020,_inset_-6px_-6px_12px_#ffffff]"
+            required>
+            <p class="hidden text-xs text-red-500 mt-1" id="usernameError">Username is required</p>
+        </div>
+
+        <!-- Password -->
+        <div>
+            <label for="password" class="block text-sm text-gray-600 mb-1">Password</label>
+            <div class="relative">
+            <input type="password" id="password" name="password" placeholder="Enter password"
+                class="w-full p-3 rounded-xl bg-gray-200 border-none outline-none
+                shadow-[inset_6px_6px_12px_#00000020,_inset_-6px_-6px_12px_#ffffff]
+                focus:shadow-[0_0_0_2px_#86d4d9,_inset_6px_6px_12px_#00000020,_inset_-6px_-6px_12px_#ffffff]"
+                required>
+            <button type="button" id="togglePassword"
+                class="absolute inset-y-0 right-3 flex items-center text-gray-500">ㆅ</button>
+            </div>
+            <p class="hidden text-xs text-red-500 mt-1" id="passwordError">Password is required</p>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit"
+            class="w-full py-3 rounded-xl font-semibold text-gray-700
+            shadow-[6px_6px_12px_#00000020,_-6px_-6px_12px_#ffffff]
+            hover:shadow-[inset_6px_6px_12px_#00000020,_inset_-6px_-6px_12px_#ffffff] 
+            transition">
+            Log in
+        </button>
+
+        <!-- Error message -->
+        <p id="loginError" class="hidden text-center text-red-500 text-sm mt-3">
+            Invalid username or password
+        </p>
+        </form>
+    </div>
+
+    <script src="scripts.js"></script>
+    </body>
 </html>

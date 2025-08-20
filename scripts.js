@@ -51,7 +51,7 @@ document.getElementById("loginForm").addEventListener("submit", (e) => {
     // If valid inputs, check login credentials
     if (valid) {
         if (username.value === "Meuserako123" && password.value === "password12345") {
-            window.location.href = "index.html"; // redirect
+            window.location.href = "dash.html"; // redirect
         } else {
             const loginError = document.getElementById("loginError");
             loginError.classList.remove("hidden");
