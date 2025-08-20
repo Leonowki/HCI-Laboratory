@@ -54,7 +54,7 @@ loader.load(
 
             // Fade in effect
             if (opacity < 1) {
-                opacity += 0.001; // speed of fade
+                opacity += 0.01; // speed of fade
                 model.traverse((child) => {
                     if (child.isMesh) {
                         child.material.opacity = Math.min(opacity, 1);
